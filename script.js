@@ -47,3 +47,24 @@ submit.onclick = (e) => {
 document.onkeypress = (e) => {
   if (e.key === "Enter") submit.click();
 };
+
+// Handle Check/Remove Items
+todos.onclick = (e) => {
+  // Specify elements and buttons in each todo
+  const isCheck = e.target.classList.contains("fa-check");
+  const isTrash = e.target.classList.contains("fa-trash");
+  const elementText = e.target.previousElementSibling;
+  const element = e.target.parentElement;
+  const elementID = parseInt(element.id);
+  ///////////////////////////////////////
+  ///////////////////////////////////////
+  if (!isCheck && !isTrash) return;
+  //   Handle Check Todos
+  if (isCheck) elementText.classList.toggle("checked");
+  if (elementText.classList.contains("checked")) {
+    todoList[elementID].checkStatus = true;
+  } else {
+    todoList[elementID].checkStatus = false;
+  }
+  //   If Click on TrashBtn
+};
