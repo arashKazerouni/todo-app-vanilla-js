@@ -8,15 +8,18 @@ function containsAnyLetters(str) {
 }
 
 // Add Todos to DOM Function
-const addToDOM = (todo) => {
-  const html = `
+const addToDOM = (array) => {
+    todos.innerHTML = "";
+  array.forEach((todo) => {
+    const html = `
     <div class="todo" id=${todo.id}>
     <p class="todo-text" >${todo.name}</p>
     <i class="fa-solid fa-check" ></i>
     <i class="fa-solid fa-trash"></i>
     </div>
     `;
-  todos.insertAdjacentHTML("beforeend", html);
+    todos.insertAdjacentHTML("beforeend", html);
+  });
 };
 // Blue Print Of Todo Declared
 class Todo {
@@ -27,20 +30,16 @@ class Todo {
   }
 }
 // Handle Todo Submit
+
 submit.onclick = (e) => {
   e.preventDefault();
   if (!containsAnyLetters(input.value)) return;
-  todos.innerHTML = "";
-  input.value.split("");
-  //   if (input.value === "") return;
   const newTodo = new Todo(input.value, this.id, this.checkStatus);
   todoList.push(newTodo);
   //   Set current ID
   for (let i = 0; i < todoList.length; i++) newTodo.id = i;
   //   Add All Todos To DOM
-  todoList.forEach((todo) => {
-    addToDOM(todo);
-  });
+  addToDOM(todoList);
   input.value = "";
 };
 // Handle EnterPress
@@ -50,21 +49,23 @@ document.onkeypress = (e) => {
 
 // Handle Check/Remove Items
 todos.onclick = (e) => {
-  // Specify elements and buttons in each todo
+  e.preventDefault();
+  // Specify Current Element And Buttons
   const isCheck = e.target.classList.contains("fa-check");
   const isTrash = e.target.classList.contains("fa-trash");
   const elementText = e.target.previousElementSibling;
-  const element = e.target.parentElement;
-  const elementID = parseInt(element.id);
+  const parentElement = e.target.parentElement;
+  const parentElementID = parseInt(parentElement.id);
+  let currentObject = todoList[parentElementID];
   ///////////////////////////////////////
   ///////////////////////////////////////
   if (!isCheck && !isTrash) return;
   //   Handle Check Todos
-  if (isCheck) elementText.classList.toggle("checked");
-  if (elementText.classList.contains("checked")) {
-    todoList[elementID].checkStatus = true;
+  if (isCheck) currentObject.checkStatus = !currentObject.checkStatus;
+  //   addToDOM(todoList);
+  if (currentObject.checkStatus) {
+    elementText.classList.add("checked");
   } else {
-    todoList[elementID].checkStatus = false;
+    elementText.classList.remove("checked");
   }
-  //   If Click on TrashBtn
 };
