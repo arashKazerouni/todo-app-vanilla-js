@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  /* background: linear-gradient(#f0f9ff, #bae6fd); */
+  background-color: #bae6fd;
+  overflow-x: hidden;
+}
+h1 {
+  color: #0676af;
+  text-transform: capitalize;
+  text-align: center;
+  margin: 1rem auto;
+}
+input::placeholder{
+  color: #bae6fd;
+}
+.container {
+  /* margin-top: 2rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: #bae6fd;
+  width: 80%;
+  min-width: 300px;
+  margin: 0 auto;
+}
+.container > * {
+  width: 100%;
+}
+#input {
+  width: 100%;
+}
+.todo-add,
+.todo {
+  background: #0284c7;
+  padding: 1rem 1.75rem;
+  border-radius: 15px;
+  max-width: 550px;
+  margin: 0 auto;
+}
+.todo-add > * {
+  outline: none;
+  border: none;
+  background: none;
+  color: #bae6fd;
+  font-size: 20px;
+}
+.todo-add {
+  display: flex;
+}
+.alert-red {
+  font-size: 16px;
+  /* font-weight: 600; */
+  color: #0676af;
+  transition: all 250ms ease-in-out;
+  text-align: center;
+  margin-top: -10px;
+  opacity: 0;
+}
+
+button,
+.fa-solid {
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+  margin-right: -15px;
+}
+button:active,
+.fa-solid:active {
+  transform: translateY(3px);
+  border-radius: 15px;
+}
+.todo {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-bottom: 10px;
+  transition: all 250ms cubic-bezier(1, 0, 0, 1);
+}
+.todo-text {
+  margin-right: auto;
+  font-size: 18px;
+  transition: all 250ms ease-in-out;
+}
+.checked {
+  text-decoration-line: line-through;
+  /* font-weight: 700; */
+  color: #bae5fd80;
+}
+.removed {
+  opacity: 0;
+}
+
+.fa-solid {
+  cursor: pointer;
+}
+.fa-check {
+  margin-right: 1rem;
+}
