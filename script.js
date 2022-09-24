@@ -10,7 +10,7 @@ const saveToLocal = (array) => {
   localStorage.setItem("todo", JSON.stringify(array));
 };
 let todoList = JSON.parse(localStorage.getItem("todo") || "[]");
-console.log(todoList);
+
 // Add Todos to DOM Function
 const addToDOM = (array) => {
   todos.innerHTML = "";
@@ -50,4 +50,16 @@ submit.onclick = (e) => {
 document.onkeypress = (e) => {
   if (e.key === "Enter") submit.click();
 };
+// Handle Check/Remove Items
+todos.onclick = (e) => {
+  const isCheck = e.target.className === "fa-solid fa-check";
+  const isTrash = e.target.className === "fa-solid fa-trash";
+  const parent = e.target.parentNode;
+  const parentID = parseInt(parent.id);
+  const currentObject = todoList[parentID];
+  if (!isCheck && !isTrash) return;
+  if (isCheck) currentObject.checkStatus = !currentObject.checkStatus;
 
+  addToDOM(todoList);
+  saveToLocal(todoList);
+};
