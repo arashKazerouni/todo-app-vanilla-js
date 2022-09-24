@@ -54,12 +54,12 @@ document.onkeypress = (e) => {
 todos.onclick = (e) => {
   const isCheck = e.target.className === "fa-solid fa-check";
   const isTrash = e.target.className === "fa-solid fa-trash";
-  const parent = e.target.parentNode;
+  const parent = e.target.parentElement;
   const parentID = parseInt(parent.id);
   const currentObject = todoList[parentID];
   if (!isCheck && !isTrash) return;
   if (isCheck) currentObject.checkStatus = !currentObject.checkStatus;
-
+  if (isTrash) todoList = todoList.filter((todo) => todo !== currentObject);
   addToDOM(todoList);
   saveToLocal(todoList);
 };
