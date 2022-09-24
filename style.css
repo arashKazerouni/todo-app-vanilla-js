@@ -17,7 +17,7 @@ h1 {
   text-align: center;
   margin: 1rem auto;
 }
-input::placeholder{
+input::placeholder {
   color: #bae6fd;
 }
 .container {
@@ -81,20 +81,14 @@ button:active,
   justify-content: end;
   align-items: center;
   margin-bottom: 10px;
-  transition: all 250ms cubic-bezier(1, 0, 0, 1);
 }
 .todo-text {
   margin-right: auto;
   font-size: 18px;
-  transition: all 250ms ease-in-out;
 }
 .checked {
   text-decoration-line: line-through;
-  /* font-weight: 700; */
-  color: #bae5fd80;
-}
-.removed {
-  opacity: 0;
+  opacity: 0.5;
 }
 
 .fa-solid {
